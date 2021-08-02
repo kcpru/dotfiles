@@ -1,0 +1,7 @@
+configuration {
+  font: "Fira Code Nerd Font 10";
+  show-icons: true;
+  hide-scrollbar: true;
+  theme: "~/.config/rofi/material.rasi";
+  kb-cancel: "Escape,Alt+F1";
+}

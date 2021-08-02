@@ -1,0 +1,105 @@
+/*
+  Copyright © Blacksuan19 @ 2020
+  part of material ocean colorscheme
+  licensed under GNU's GPL 3
+*/
+
+* {
+  background: #0f111a70;
+  foreground: #f1f1f1;
+  selected: #82aaff;
+}
+
+window {
+  transparency: "real";
+  background-color: @background;
+  text-color: @foreground;
+  padding: 5px 5px 5px 5px;
+  border-radius: 5px;
+}
+
+prompt {
+  enabled: true;
+  padding: 4px 4px 6px 6px;
+  background-color: #00000000;
+  text-color: @foreground;
+}
+
+textbox-prompt-colon {
+  expand: false;
+  background-color: @background;
+  padding: 4px 0px 0px 6px;
+}
+
+inputbar {
+  children: [ textbox-prompt-colon, entry ];
+  background-color: #00000000;
+  text-color: @foreground;
+  expand: false;
+  border: 0px 0px 0px 0px;
+  border-radius: 0px;
+  border-color: @selected;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 4px 0px;
+  position: center;
+}
+
+entry {
+  background-color: #00000000;
+  text-color: @foreground;
+  placeholder-color: @foreground;
+  expand: true;
+  horizontal-align: 0;
+  blink: true;
+  padding: 4px 0px 0px 4px;
+}
+
+case-indicator {
+  background-color: @background;
+  text-color: @foreground;
+  spacing: 0;
+}
+
+listview {
+  background-color: #00000000;
+  columns: 2;
+  spacing: 5px;
+  cycle: true;
+  dynamic: true;
+  layout: vertical;
+}
+
+mainbox {
+  background-color: #00000000;
+  children: [ inputbar, listview ];
+  spacing: 5px;
+  padding: 5px 5px 5px 5px;
+}
+
+element {
+  background-color: @background;
+  text-color: @foreground;
+  orientation: horizontal;
+  border-radius: 5px;
+  padding: 6px 6px 6px 6px;
+}
+
+element-icon {
+  size: 24px;
+  border: 0px;
+}
+
+element-text {
+  expand: true;
+  horizontal-align: 0;
+  vertical-align: 0;
+  margin: 2px 0px 2px 2px;
+}
+
+element selected {
+  background-color: @selected;
+  text-color: #0f111a;
+  border: 0px;
+  border-radius: 5px;
+  border-color: @selected;
+}
