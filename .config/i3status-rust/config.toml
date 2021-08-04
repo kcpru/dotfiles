@@ -1,0 +1,97 @@
+[theme]
+name = "modern"
+
+[theme.overrides]
+idle_bg = "#0f111a"
+idle_fg = "#82aaff"
+info_bg = "#0f111a"
+info_fg = "#c3e88d"
+good_bg = "#c3e88d"
+warning_bg = "#ffcb6b"
+critical_bg = "#f07178"
+separator_fg = "#1a1c25"
+separator_bg = "#1a1c25"
+
+
+[icons]
+name = "awesome"
+
+
+# cpu
+[[block]]
+block = "cpu"
+interval = 1
+format = "{barchart} {utilization} {frequency}"
+
+[block.theme_overrides]
+idle_bg = "#1a1c25"
+
+
+# gpu
+[[block]]
+block = "nvidia_gpu"
+label = " GTX"
+show_clocks = true
+interval = 1
+
+
+# memory
+[[block]]
+block = "memory"
+format_mem = "{mem_used}/{mem_total}({mem_used_percents})"
+format_swap = "{swap_used}/{swap_total}({swap_used_percents})"
+display_type = "memory"
+icons = true
+clickable = true
+interval = 5
+warning_mem = 80
+warning_swap = 80
+critical_mem = 95
+critical_swap = 95
+
+[block.theme_overrides]
+idle_bg = "#1a1c25"
+
+
+# disk
+[[block]]
+block = "disk_space"
+path = "/home/kcpru"
+info_type = "used"
+format = "{icon} {used}/{total} ({available} free)"
+
+
+# net
+[[block]]
+block = "net"
+device = "wlp10s0"
+format = "{signal_strength} {ip} {speed_down;K*b} {graph_down;K*b}"
+interval = 5
+
+[block.theme_overrides]
+idle_bg = "#1a1c25"
+
+
+# music
+[[block]]
+block="music"
+buttons = ["prev", "play", "next"]
+
+[block.theme_overrides]
+info_bg = "#c3e88d"
+info_fg = "#0f111a"
+
+
+#sound
+[[block]]
+block = "sound"
+
+[block.theme_overrides]
+idle_bg = "#1a1c25"
+
+
+# time
+[[block]]
+block = "time"
+format = "%a %d/%b/%Y %H:%M:%S"
+interval = 1
