@@ -54,9 +54,10 @@ module-margin-right = 2
 font-0 = Fira Code Nerd Font:pixelsize=10:weight=bold;1
 font-1 = Font Awesome 5 Brands
 font-2 = siji:pixelsize=10;1
+font-3 = FontAwesome:size=8;-2
 
-modules-left = bspwm i3
-modules-center = mpd
+modules-left = i3 xwindow
+modules-center = mpd playpause
 modules-right = filesystem backlight-acpi alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
@@ -125,6 +126,14 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
 
+
+ws-icon-0 = term;
+ws-icon-1 = web;
+ws-icon-2 = code;
+ws-icon-3 = music;
+ws-icon-4 = irssi;
+ws-icon-default = 
+
 label-mode-padding = 2
 label-mode-foreground = #000
 label-mode-background = ${colors.primary}
@@ -160,7 +169,7 @@ format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
 icon-prev = 
 icon-stop = 
-icon-play = 
+icon-play = 
 icon-pause = 
 icon-next = 
 
@@ -268,6 +277,11 @@ format-volume = <label-volume> <bar-volume>
 label-volume = Volume %percentage%%
 label-volume-foreground = ${root.foreground}
 
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+
 label-muted = 🔇 muted
 label-muted-foreground = #FFF
 
@@ -287,6 +301,20 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/playpause]
+type = custom/ipc
+format-font = 2
+format-padding = 0
+format-foreground = ${colors.foreground}
+; Default
+hook-0 = echo ""
+; Playing
+hook-1 = echo ""
+; Paused
+hook-2 = echo ""
+initial = 2
+click-left = "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 
 [module/alsa]
 type = internal/alsa
