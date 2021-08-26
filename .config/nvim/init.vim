@@ -17,6 +17,9 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 call plug#begin('~/.vim/plugged')
+" Coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 "statusline/bufferline
 Plug 'itchyny/lightline.vim'
 Plug 'ojroques/vim-scrollstatus'
