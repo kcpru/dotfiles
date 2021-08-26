@@ -58,6 +58,9 @@ bindsym $mod+d exec --no-startup-id "rofi -modi drun,run -show drun"
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
+# dunst - notification
+exec --no-startup-id /usr/bin/dunst
+
 # change focus
 bindsym $mod+j focus left
 bindsym $mod+k focus down
@@ -120,6 +123,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# Run program on a specific workspace
+exec --no-startup-id i3-msg "workspace 1; exec /usr/bin/firefox"
+exec --no-startup-id i3-msg "workspace 2; exec /usr/bin/kitty"
+exec --no-startup-id i3-msg "workspace 3; exec /usr/bin/spotify"
+exec --no-startup-id i3-msg "workspace 4; exec /usr/bin/telegram-desktop"
+exec --no-startup-id i3-msg "workspace 4; exec /usr/bin/discord"
+
+# Move workspace
+for_window [class="Spotify"] move to workspace $ws3
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -197,16 +210,16 @@ client.background       #F8F8F2
 
 # i3 status bar
 bar {
- height 28
-font pango:Fira Code Nerd Font Medium 10
-position top
+    height 28
+    font pango:Fira Code Nerd Font Medium 11
+    position top
     status_command i3status-rs ~/.config/i3status-rust/config.toml
-colors {
-separator #f07178
+    colors {
+        separator #f07178
         background #0f111a
         statusline #f07178
         focused_workspace #82aaff #82aaff #0f111a
-      active_workspace #0f111a #0f111a #ffffff
+        active_workspace #0f111a #0f111a #ffffff
         inactive_workspace #0f111a #0f111a #ffffff
         urgent_workspace #0f111a #ffcb6b #ffffff
     }
