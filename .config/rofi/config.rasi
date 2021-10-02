@@ -1,5 +1,5 @@
 configuration {
-  font: "Fira Code Nerd Font 10";
+  font: "Fira Code Nerd Font 11";
   show-icons: true;
   hide-scrollbar: true;
   theme: "~/.config/rofi/material.rasi";
