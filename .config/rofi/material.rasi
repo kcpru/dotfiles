@@ -99,6 +99,7 @@ element-text {
   margin: 2px 0px 2px 2px;
   background-color: #00000000;
   text-color: #ffffff;
+  text-color: inherit;
 }
 
 element selected {
