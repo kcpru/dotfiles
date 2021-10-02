@@ -21,7 +21,7 @@ window {
 }
 
 prompt {
-  enabled: true;
+  enabled: false;
   padding: 4px 4px 6px 6px;
   background-color: #00000000;
   text-color: @foreground;
@@ -29,6 +29,7 @@ prompt {
 
 textbox-prompt-colon {
   expand: false;
+  enabled: false;
   background-color: @background;
   padding: 4px 0px 0px 6px;
 }
