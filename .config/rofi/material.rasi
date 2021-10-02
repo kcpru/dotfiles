@@ -48,13 +48,12 @@ entry {
   expand: true;
   horizontal-align: 0;
   blink: true;
-  padding: 4px 0px 0px 4px;
+  padding: 5px 0px 0px 5px;
 }
 
 case-indicator {
   background-color: @background;
   text-color: @foreground;
-  spacing: 0;
 }
 
 listview {
@@ -84,6 +83,7 @@ element {
 element-icon {
   size: 24px;
   border: 0px;
+  margin: 0 2px 0 0;
   background-color: #00000000;
 }
 
