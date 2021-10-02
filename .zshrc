@@ -138,6 +138,10 @@ source /usr/share/fzf/completion.zsh
 # PATH="$PATH:$HOME/.bin"
 # PATH="$PATH:$HOME/.cargo/bin"
 
+# Android Sdk
+export PATH="$HOME/Android/Sdk/tools:$PATH"
+export PATH="$HOME/Android/Sdk/platform-tools:$PATH"
+
 # nvm
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -152,4 +156,3 @@ PATH="/home/kcpru/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/kcpru/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/kcpru/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/kcpru/perl5\""; export PERL_MB_OPT;
-PERL_MM_OPT="INSTALL_BASE=/home/kcpru/perl5"; export PERL_MM_OPT;
