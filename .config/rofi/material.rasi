@@ -15,7 +15,9 @@ window {
   background-color: @background;
   text-color: @foreground;
   padding: 5px 5px 5px 5px;
-  border-radius: 5px;
+  border-radius: 0px;
+  border: 2px;
+  border-color: @selected;
 }
 
 prompt {
@@ -87,6 +89,7 @@ element {
 element-icon {
   size: 24px;
   border: 0px;
+  background-color: #00000000;
 }
 
 element-text {
@@ -94,6 +97,8 @@ element-text {
   horizontal-align: 0;
   vertical-align: 0;
   margin: 2px 0px 2px 2px;
+  background-color: #00000000;
+  text-color: #ffffff;
 }
 
 element selected {
@@ -102,4 +107,8 @@ element selected {
   border: 0px;
   border-radius: 5px;
   border-color: @selected;
+}
+
+element selected. {
+    text-color: #0f111a;
 }
