@@ -199,19 +199,18 @@ gaps inner 20
 # picom
 exec --no-startup-id "picom -b --experimental-backends"
 
-# class                 border  bground text    indicator child_border
-client.focused          #82AAFF #82AAFF #F8F8F2 #82AAFF   #82AAFF
-client.focused_inactive #44475A #44475A #F8F8F2 #44475A   #44475A
-client.unfocused        #282A36 #282A36 #BFBFBF #282A36   #282A36
-client.urgent           #44475A #FF5555 #F8F8F2 #FF5555   #FF5555
-client.placeholder      #282A36 #282A36 #F8F8F2 #282A36   #282A36
-
+# class                 border      bground     text        indicator   child_border
+client.focused          #82AAFF     #82AAFF     #F8F8F2     #82AAFF     #82AAFF
+client.focused_inactive #0f111aB0   #0f111aB0   #F8F8F2     #0f111aB0   #0f111aB0
+client.unfocused        #0f111aB0   #0f111aB0   #BFBFBF     #0f111aB0   #0f111aB0
+client.urgent           #44475A     #f07178     #F8F8F2     #f07178     #f07178
+client.placeholder      #282A36     #282A36     #F8F8F2     #282A36     #282A36
 client.background       #F8F8F2
 
 # i3 status bar
 bar {
     height 28
-    font pango:Fira Code Nerd Font Medium 11
+    font pango:Fira Code Nerd Font Medium 10
     position top
     status_command i3status-rs ~/.config/i3status-rust/config.toml
     colors {
