@@ -153,6 +153,7 @@ set fillchars+=vert:┊
 
 "highlight current number
 set number
+set relativenumber
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 hi clear CursorLine

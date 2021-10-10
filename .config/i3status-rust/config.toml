@@ -58,7 +58,11 @@ idle_bg = "#1a1c25"
 block = "disk_space"
 path = "/home/kcpru"
 info_type = "used"
-format = "{icon} {used}/{total} ({available} free)"
+format = "{icon} {used}/{total}"
+
+[block.theme_overrides]
+critical_bg = "#82aaff"
+critical_fg = "#1a1c25"
 
 
 # net
@@ -78,9 +82,8 @@ block="music"
 buttons = ["prev", "play", "next"]
 
 [block.theme_overrides]
-info_bg = "#c3e88d"
-info_fg = "#0f111a"
-
+info_bg = "#82aaff"
+info_fg = "#1a1c25"
 
 #sound
 [[block]]
@@ -88,6 +91,7 @@ block = "sound"
 
 [block.theme_overrides]
 idle_bg = "#1a1c25"
+info_bg = ""
 
 
 # time
