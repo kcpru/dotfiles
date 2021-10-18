@@ -1,7 +1,5 @@
+/** Basic config file **/
+
 configuration {
-  font: "Fira Code Nerd Font Medium 11";
-  show-icons: true;
-  hide-scrollbar: true;
-  theme: "~/.config/rofi/material.rasi";
-  kb-cancel: "Escape,Alt+F1";
+  show-icons:         true;
 }

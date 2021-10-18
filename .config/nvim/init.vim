@@ -98,6 +98,19 @@ Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --n
 Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
 Plug 'ncm2/ncm2-ultisnips'
 
+" Better Visual Guide
+Plug 'Yggdroot/indentLine'
+" syntax check
+Plug 'w0rp/ale'
+" Autocomplete
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+" Formater
+Plug 'Chiel92/vim-autoformat'
+
 call plug#end()
 
 
@@ -559,7 +572,7 @@ call lightline#colorscheme()
 endfunction
 
 "indentline
-let g:indentLine_char = '┆'
+let g:indentLine_char = '¦'
 ""let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_setColors = 0
 let g:indentLine_fileTypeExclude = ['dashboard'] "stop indentlines on dashboard

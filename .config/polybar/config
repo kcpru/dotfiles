@@ -93,7 +93,7 @@ font-0 = Fira Code Nerd Font:pixelsize=12:weight=medium;0
 font-1 = "Siji:pixelsize=12;0"
 font-2 = FontAwesome5:pixelsize=14;0
 
-modules-left = mpd i3
+modules-left = xmonad
 modules-center =  xwindow
 modules-right = pulseaudio memory cpu wlan eth temperature date powermenu
 
@@ -178,6 +178,11 @@ label-urgent-padding = ${layout.module-padding}
 label-mode-background = ${color.module-bg}
 label-mode-padding = ${layout.module-padding}
 
+[module/xmonad]
+type = custom/script
+exec = xmonad-log
+
+tail = true
 
 [module/mpd]
 type = internal/mpd
