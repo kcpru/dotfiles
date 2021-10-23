@@ -29,6 +29,7 @@ import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
 import qualified XMonad.StackSet as W
 import XMonad.Util.SpawnOnce (spawnOnce)
+import XMonad.Actions.SpawnOn
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -93,12 +94,6 @@ addEWMHFullscreen = do
 clipboardy :: MonadIO m => m () -- Don't question it
 clipboardy = spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"
 
-centerlaunch = spawn "exec ~/bin/eww open-many blur_full weather profile quote search_full incognito-icon vpn-icon home_dir screenshot power_full reboot_full lock_full logout_full suspend_full"
-
-sidebarlaunch = spawn "exec ~/bin/eww open-many time_side player_side sys_side sliders_side"
-
-ewwclose = spawn "exec ~/bin/eww close-all"
-
 -- maimcopy = spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot"
 maimcopy = spawn "flameshot gui"
 
@@ -114,11 +109,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm, xK_F1), spawn "betterlockscreen -l"),
       -- launch rofi and dashboard
       ((modm, xK_o), rofi_launcher),
-      ((modm, xK_p), centerlaunch),
-      ((modm .|. shiftMask, xK_p), ewwclose),
-      -- launch eww sidebar
-      ((modm, xK_s), sidebarlaunch),
-      ((modm .|. shiftMask, xK_s), ewwclose),
       -- Audio keys
       ((0, xF86XK_AudioPlay), spawn "playerctl play-pause"),
       ((0, xF86XK_AudioPrev), spawn "playerctl previous"),
@@ -282,7 +272,8 @@ myManageHook =
         className =? "Gimp" --> doFloat,
         resource =? "desktop_window" --> doIgnore,
         resource =? "kdesktop" --> doIgnore,
-        isFullscreen --> doFullFloat
+        isFullscreen --> doFullFloat,
+        className =? "Spotify" --> doShift ( myWorkspaces !! 9)
       ]
 
 ------------------------------------------------------------------------
@@ -315,14 +306,15 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
   spawnOnce "exec ~/bin/bartoggle"
-  spawnOnce "exec ~/bin/eww daemon"
-  spawn "xsetroot -cursor_name left_ptr"
-  spawn "exec ~/bin/lock.sh"
   spawnOnce "feh --bg-scale ~/.wallpaper/background.png"
   spawnOnce "picom --experimental-backends"
   spawnOnce "greenclip daemon"
   spawnOnce "dunst"
 
+  spawn "xsetroot -cursor_name left_ptr"
+  spawn "exec ~/bin/lock.sh"
+  
+  spawnOn "9" "spotify"
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
