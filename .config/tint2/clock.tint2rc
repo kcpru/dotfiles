@@ -176,13 +176,13 @@ launcher_tooltip = 1
 
 #-------------------------------------
 # Clock
-time1_format =   %H:%M
+time1_format = %H:%M
 time2_format =
-time1_font = Museo Sans Light 16
+time1_font = Fira Code Nerd Font Medium 15
 time1_timezone =
 time2_timezone =
 clock_font_color = #ffe585 100
-clock_padding = 10 0
+clock_padding = 10 10
 clock_background_id = 0
 clock_tooltip =
 clock_tooltip_timezone =
