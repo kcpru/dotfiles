@@ -1,0 +1,40 @@
+Config { font            = "xft:Fira Nerd Font Mono:weight=medium:pixelsize=10:antialias=true:hinting=true"
+       , additionalFonts = [ "xft:Mononoki:pixelsize=11:antialias=true:hinting=true"
+                           , "xft:Font Awesome 5 Free Solid:pixelsize=12"
+                           , "xft:Font Awesome 5 Brands:pixelsize=12"
+                           ]
+       , bgColor      = "#82AAFF"
+       , fgColor      = "#d8dee9"
+       -- Position TopSize and BottomSize take 3 arguments:
+       --   an alignment parameter (L/R/C) for Left, Right or Center.
+       --   an integer for the percentage width, so 100 would be 100%.
+       --   an integer for the minimum pixel height for xmobar, so 24 would force a height of at least 24 pixels.
+       --   NOTE: The height should be the same as the trayer (system tray) height.
+       , position       =  Static { xpos = 0 , ypos = 0, width = 1370, height = 25}
+       , lowerOnStart = True
+       , hideOnStart  = False
+       , allDesktops  = True
+       , persistent   = True
+       , iconRoot     = ".xmonad/xpm/"  -- default: "."
+       , commands = [
+                    -- Internet speed in KB
+                    Run Com "/bin/bash" ["-c", "echo `xkblayout-state print '%s'`"] "mylang" 20
+                    -- Cpu usage in percent
+                    , Run Cpu ["-t", "<fn=2>\xf108</fn>  cpu: (<total>%)","-H","50","--high","red"] 20
+                    -- Ram used number and percent
+                    , Run Memory ["-t", "<fn=2>\xf233</fn>  mem: <used>M (<usedratio>%)"] 20
+                    -- Disk space free
+                    , Run DiskU [("/", "<fn=2>\xf0c7</fn>  hdd: <free> free")] [] 60
+                    -- Echos a "bell" icon in front of the pacman updates.
+                    , Run Com "echo" ["<fn=2>\xf0f3</fn>"] "bell" 3600
+                    , Run Com "/bin/bash" ["-c", "echo `pacmd list-sinks|grep -A 15 '* index'| awk '/volume: front/{ print $5 }' | sed 's/[%|,]//g'`%"]  "myvolume" 20
+                    , Run Com "/bin/bash" ["-c", "echo `brightnessctl g`%"]  "mybright" 20
+                    -- Time and date
+                    , Run Date "<fn=2>\xf017</fn>  %b %d %Y - (%H:%M:%S) " "date" 1
+                    -- Print Workspace
+                    , Run UnsafeStdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = " <icon=haskell_20.xpm/> <fc=#3b4252>|</fc> %UnsafeStdinReader% }{ <fc=#bf616a><action=`alacritty -e htop`>%cpu%</action></fc>    <fc=#d08770><action=`alacritty -e htop`>%memory%</action></fc>    <fc=#ebcb8b><action=`alacritty -e htop`>%disku%</action></fc>  <fc=#a3be8c>%bell% %myvolume%/%mybright%/%mylang%</fc>   <fc=#b48ead> <action=`alacritty -e htop`>%date%</action></fc>"
+       }

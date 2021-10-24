@@ -1,4 +1,3 @@
-
 ;==========================================================
 ;
 ;
@@ -28,51 +27,14 @@ primary = #82aaff
 secondary = #c3e88d
 alert = #f07178
 
-[color]
-base-bg     = #8c0a0a0a
-glyph-bg    = #de0a0a0a
-module-bg   = #f00a0a0a
-selected-bg = #dc1a1a1a
-
-text-fg = #c8c8c8
-icon-fg = ${xcolor.color1}
-bar-fg  = ${xcolor.color3}
-warn-fg = #821717
-
-
-[xcolor]
-bg     = ${xrdb:color0:#0a0a0a}
-fg     = ${xrdb:color7:#c8c8c8}
-color1 = ${xrdb:color1:#a54242}
-color2 = ${xrdb:color2:#8c9440}
-color3 = ${xrdb:color3:#de935f}
-color4 = ${xrdb:color4:#5f819d}
-color5 = ${xrdb:color5:#85678f}
-color6 = ${xrdb:color6:#5e8d87}
-color8 = ${xrdb:color8:#373b41}
-
-[layout]
-icon-font = 2
-icon-padding = 1
-module-padding = 2
-
-bar-format = %{T4}%fill%%indicator%%{F#dc404040}%empty%%{F-}%{T-}
-bar-fill-icon = ﭳ
-
-
-[common-prefix-format]
-format-prefix-font = ${layout.icon-font}
-format-prefix-foreground = ${color.icon-fg}
-format-prefix-padding-right = ${layout.icon-padding}
-
 [bar/bar]
-monitor = ${env:MONITOR:DP-0}
+;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
-;offset-x = 30%
-offset-y = 10%
+;offset-x = 1%
+;offset-y = 1%
 radius = 0
-fixed-center = true
+fixed-center = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -89,13 +51,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Fira Code Nerd Font:pixelsize=12:weight=medium;0
-font-1 = "Siji:pixelsize=12;0"
-font-2 = FontAwesome5:pixelsize=14;0
+font-0 = Fira Code Nerd Font:pixelsize=10:weight=bold;1
+font-1 = Font Awesome 5 Brands
+font-2 = siji:pixelsize=10;1
 
-modules-left = xmonad
-modules-center =  xwindow
-modules-right = pulseaudio memory cpu wlan eth temperature date powermenu
+modules-left = bspwm i3
+modules-center = mpd
+modules-right = filesystem backlight-acpi alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -132,72 +94,75 @@ label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
 [module/i3]
 type = internal/i3
-
+format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
-pin-workspaces = true
-strip-wsnumbers = true
 
-ws-icon-default = 缾
-ws-icon-0 = 1;
-ws-icon-1 = 2;ﲵ
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-5 = 6;
-ws-icon-6 = 10;ﱘ
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
 
-format = <label-state> <label-mode>
-format-padding = 0
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
 
-; Active workspace on focused monitor
-label-focused = %icon%
-label-focused-background = ${color.selected-bg}
-label-focused-underline = ${xcolor.color1}
-label-focused-padding = ${layout.module-padding}
+; focused = Active workspace on focused monitor
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
 
-; Active workspace on unfocused monitor
-label-visible = ${self.label-focused}
-label-visible-background = ${color.module-bg}
-label-visible-underline = ${xcolor.color1}
-label-visible-padding = ${layout.module-padding}
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %index%
+label-unfocused-padding = 2
 
-; Inactive workspace on any monitor
-label-unfocused = ${self.label-focused}
-label-unfocused-background = ${color.module-bg}
-label-unfocused-padding = ${layout.module-padding}
+; visible = Active workspace on unfocused monitor
+label-visible = %index%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
 
-; Workspace with urgency hint set
-label-urgent = ${self.label-focused}
-label-urgent-background = ${color.module-bg}
-label-urgent-underline = ${color.warn-fg}
-label-urgent-padding = ${layout.module-padding}
+; urgent = Workspace with urgency hint set
+label-urgent = %index%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
-label-mode-background = ${color.module-bg}
-label-mode-padding = ${layout.module-padding}
+; Separator in between workspaces
+; label-separator = |
 
-[module/xmonad]
-type = custom/script
-exec = xmonad-log
-
-tail = true
 
 [module/mpd]
 type = internal/mpd
-format-online = "Łooo " <label-song> <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-label-offline = 🎜 mpd is offline
-
-toggle-on-foreground = #ff
-toggle-off-foreground = #55
-
-icon-play = ⏵
-icon-pause = ⏸
-icon-stop = ⏹
-icon-prev = ⏮
-icon-next = ⏭
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -219,10 +184,15 @@ bar-empty = ─
 bar-empty-font = 2
 bar-empty-foreground = ${colors.foreground-alt}
 
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #ffcb6b
 label = %percentage:2%%
@@ -230,7 +200,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #89ddff
 label = %percentage_used%%
@@ -250,11 +220,11 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = " "
-ramp-signal-1 = " "
-ramp-signal-2 = " "
-ramp-signal-3 = " "
-ramp-signal-4 = " "
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
 [module/eth]
@@ -263,9 +233,9 @@ interface = wlp10s0
 interval = 3.0
 
 format-connected-underline = #89ddff
-format-connected-prefix = " "
+format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = " %local_ip%"
+label-connected = %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -283,7 +253,7 @@ date-alt = "%d.%m.%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = ""
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #c3e88d
 
@@ -298,7 +268,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = Volume %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted =  muted
+label-muted = 🔇 muted
 label-muted-foreground = #FFF
 
 bar-volume-width = 15
@@ -307,14 +277,14 @@ bar-volume-foreground-1 = #c3e88d
 bar-volume-foreground-2 = #c3e88d
 bar-volume-foreground-3 = #c3e88d
 bar-volume-foreground-4 = #c3e88d
-bar-volume-foreground-5 = #ffcb6b
+bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = ""
+bar-volume-indicator = 🌑
 bar-volume-indicator-font = 2
-bar-volume-fill = ""
+bar-volume-fill = ─
 bar-volume-fill-font = 2
-bar-volume-empty = ""
+bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -325,7 +295,7 @@ format-volume = <label-volume> <bar-volume>
 label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = ""
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = sound muted
 
@@ -340,9 +310,9 @@ bar-volume-foreground-6 = #f07178
 bar-volume-gradient = true
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
-bar-volume-fill = 
+bar-volume-fill = ─
 bar-volume-fill-font = 2
-bar-volume-empty = 
+bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
@@ -360,9 +330,9 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+;ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
 [module/powermenu]
@@ -372,14 +342,14 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =   cancel
+label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 =   reboot
+menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = power off
 menu-0-1-exec = menu-open-2
@@ -400,7 +370,7 @@ screenchange-reload = true
 ;compositing-background = screen
 ;compositing-foreground = source
 ;compositing-border = over
-pseudo-transparency = true
+;pseudo-transparency = false
 
 [global/wm]
 margin-top = 5

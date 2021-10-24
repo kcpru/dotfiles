@@ -64,7 +64,8 @@ myModMask = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces = ["\63083", "\63288", "\63306", "\61723", "\63107", "\63601", "\63391", "\61713", "\61884"]
+myWorkspaces = ["terminal", "web", "files", "games", "chat", "other0", "other1", "other2", "spotify"]
+-- myWorkspaces = ["\63083", "\63288", "\63306", "\61723", "\63107", "\63601", "\63391", "\61713", "\61884"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -273,7 +274,11 @@ myManageHook =
         resource =? "desktop_window" --> doIgnore,
         resource =? "kdesktop" --> doIgnore,
         isFullscreen --> doFullFloat,
-        className =? "Spotify" --> doShift ( myWorkspaces !! 9)
+        className =? "Spotify" --> doShift ( myWorkspaces !! 8),
+        className =? "firefox" --> doShift ( myWorkspaces !! 1),
+        className =? "discord" --> doShift ( myWorkspaces !! 4),
+        className =? "TelegramDesktop" --> doShift ( myWorkspaces !! 4),
+        className =? "Steam" --> doShift ( myWorkspaces !! 3)
       ]
 
 ------------------------------------------------------------------------
@@ -313,8 +318,7 @@ myStartupHook = do
 
   spawn "xsetroot -cursor_name left_ptr"
   spawn "exec ~/bin/lock.sh"
-  
-  spawnOn "9" "spotify"
+
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
