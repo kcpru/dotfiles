@@ -106,8 +106,6 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
     -- launch a terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf),
-      -- lock screen
-      ((modm, xK_F1), spawn "betterlockscreen -l"),
       -- launch rofi and dashboard
       ((modm, xK_o), rofi_launcher),
       -- Audio keys
@@ -317,7 +315,6 @@ myStartupHook = do
   spawnOnce "dunst"
 
   spawn "xsetroot -cursor_name left_ptr"
-  spawn "exec ~/bin/lock.sh"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -348,13 +345,12 @@ defaults =
       mouseBindings = myMouseBindings,
       -- hooks, layouts
       manageHook = myManageHook,
-      layoutHook = gaps [(L, 15), (R, 15), (U, 60), (D, 15)] $ spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $ smartBorders $ myLayout,
+      layoutHook = gaps [(L, 10), (R, 10), (U, 10), (D, 10)] $ spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $ smartBorders $ myLayout,
       handleEventHook = myEventHook,
       logHook = myLogHook,
       startupHook = myStartupHook >> addEWMHFullscreen
     }
 
--- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
 help =
   unlines
