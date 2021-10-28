@@ -34,6 +34,7 @@ import XMonad.Actions.SpawnOn
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
+myTerminal :: String
 myTerminal = "kitty"
 
 -- Whether focus follows the mouse pointer.
@@ -46,6 +47,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
+myBorderWidth :: Dimension
 myBorderWidth = 3
 
 -- modMask lets you specify which modkey you want to use. The default
@@ -53,6 +55,7 @@ myBorderWidth = 3
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
+myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -64,13 +67,16 @@ myModMask = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
+myWorkspaces :: [String]
 myWorkspaces = ["terminal", "web", "files", "games", "chat", "other0", "other1", "other2", "spotify"]
 -- myWorkspaces = ["\63083", "\63288", "\63306", "\61723", "\63107", "\63601", "\63391", "\61713", "\61884"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
+myNormalBorderColor :: String
 myNormalBorderColor = "#3b4252"
 
+myFocusedBorderColor :: String
 myFocusedBorderColor = "#82AAFF"
 
 addNETSupported :: Atom -> X ()
@@ -92,16 +98,20 @@ addEWMHFullscreen = do
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-clipboardy :: MonadIO m => m () -- Don't question it
+clipboardy :: MonadIO m => m () 
 clipboardy = spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"
 
 -- maimcopy = spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot"
+maimcopy :: X ()
 maimcopy = spawn "flameshot gui"
 
+maimsave :: X ()
 maimsave = spawn "maim -s ~/Desktop/$(date +%Y-%m-%d_%H-%M-%S).png && notify-send \"Screenshot\" \"Saved to Desktop\" -i flameshot"
 
+rofi_launcher :: X ()
 rofi_launcher = spawn "rofi -no-lazy-grab -show drun -modi run,drun,window -theme $HOME/.config/rofi/launcher/style -drun-icon-theme \"candy-icons\" "
 
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modm}) =
   M.fromList $
     -- launch a terminal
@@ -205,6 +215,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
+myMouseBindings :: XConfig l -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings (XConfig {XMonad.modMask = modm}) =
   M.fromList $
     -- mod-button1, Set the window to floating mode and move by dragging
@@ -264,6 +275,7 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
 -- To match on the WM_NAME, you can use 'title' in the same way that
 -- 'className' and 'resource' are used below.
 --
+myManageHook :: ManageHook
 myManageHook =
   fullscreenManageHook <+> manageDocks
     <+> composeAll
@@ -297,6 +309,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
+myLogHook :: X ()
 myLogHook = return ()
 
 ------------------------------------------------------------------------
@@ -307,6 +320,7 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+myStartupHook :: X ()
 myStartupHook = do
   spawnOnce "exec ~/bin/bartoggle"
   spawnOnce "feh --bg-scale ~/.wallpaper/background.png"
@@ -321,6 +335,7 @@ myStartupHook = do
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
+main :: IO ()
 main = xmonad $ fullscreenSupport $ docks $ ewmh defaults
 
 -- A structure containing your configuration settings, overriding
