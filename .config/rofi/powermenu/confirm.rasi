@@ -1,0 +1,25 @@
+/* Confirm Dialog */
+
+@import "colors.rasi"
+
+* {
+    background-color:       #00000000;
+    text-color:             @selected;
+	font:				 	"Fira Code Nerd Font Medium 16";
+}
+
+window {
+    background-color:       @background;
+    width:      			320px;
+    padding:    			25px;
+    border:					3px;
+    border-radius:          12px;
+    border-color:           #82AAFF;
+    location:               center;
+    y-offset:               -2em;
+}
+
+entry {
+    expand: 				true;
+    text-color:				@border;
+}
