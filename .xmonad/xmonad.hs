@@ -283,12 +283,7 @@ myManageHook =
         className =? "Gimp" --> doFloat,
         resource =? "desktop_window" --> doIgnore,
         resource =? "kdesktop" --> doIgnore,
-        isFullscreen --> doFullFloat,
-        className =? "Spotify" --> doShift ( myWorkspaces !! 8),
-        className =? "firefox" --> doShift ( myWorkspaces !! 1),
-        className =? "discord" --> doShift ( myWorkspaces !! 4),
-        className =? "TelegramDesktop" --> doShift ( myWorkspaces !! 4),
-        className =? "Steam" --> doShift ( myWorkspaces !! 3)
+        isFullscreen --> doFullFloat
       ]
 
 ------------------------------------------------------------------------
@@ -360,7 +355,7 @@ defaults =
       mouseBindings = myMouseBindings,
       -- hooks, layouts
       manageHook = myManageHook,
-      layoutHook = gaps [(L, 10), (R, 10), (U, 10), (D, 10)] $ spacingRaw True (Border 10 10 10 10) True (Border 10 10 10 10) True $ smartBorders $ myLayout,
+      layoutHook = gaps [(L, 10), (R, 10), (U, 10), (D, 10)] $ spacingRaw True (Border 10 10 10 10) False (Border 10 10 10 10) True $ smartBorders $ myLayout,
       handleEventHook = myEventHook,
       logHook = myLogHook,
       startupHook = myStartupHook >> addEWMHFullscreen
