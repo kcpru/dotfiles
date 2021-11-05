@@ -87,8 +87,8 @@ Plug 'maximbaz/lightline-ale'
 Plug 'phaazon/hop.nvim'
 
 "cool animations
-"Plug 'camspiers/animate.vim'
-"Plug 'camspiers/lens.vim'
+Plug 'camspiers/animate.vim'
+Plug 'camspiers/lens.vim'
 Plug 'yuttie/comfortable-motion.vim'
 
 " Material vim
@@ -139,7 +139,7 @@ colorscheme material
 ""colorscheme doom-one
 
 "fix bg
-hi NORMAL guibg=#282c34
+hi NORMAL guibg=#0f111a
 
 "enable syntax
 syntax enable
