@@ -112,6 +112,9 @@ Plug 'ncm2/ncm2-jedi'
 " Formater
 Plug 'Chiel92/vim-autoformat'
 
+" Github Copilot
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 
@@ -148,13 +151,16 @@ set t_Co=256
 set guifont=FiraCode\ Nerd\ Font:h13
 ""set guifont=FiraCode\ Nerd\ Font,DejaVu\ Sans:h13
 let g:neovide_cursor_antialiasing=v:true
-let g:neovide_fullscreen=v:true
+let g:neovide_fullscreen=v:false
 let g:neovide_refresh_rate=60
 let g:neovide_keyboard_layout="qwerty"
+let g:neovide_transparency=0.8
 
 let g:neovide_cursor_vfx_mode = "pixiedust"
-let g:neovide_cursor_animation_length=0.13
+let g:neovide_cursor_animation_length=0.15
 let g:neovide_cursor_trail_length=0.8
+let g:neovide_cursor_vfx_particle_density=55
+let g:neovide_cursor_vfx_particle_lifetime=2
 
 
 "__VIM_SETTINGS__"
