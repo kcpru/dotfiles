@@ -5,6 +5,108 @@ import Data.Monoid ()
 import Graphics.X11.ExtraTypes.XF86 (xF86XK_AudioLowerVolume, xF86XK_AudioMute, xF86XK_AudioNext, xF86XK_AudioPlay, xF86XK_AudioPrev, xF86XK_AudioRaiseVolume, xF86XK_MonBrightnessDown, xF86XK_MonBrightnessUp)
 import System.Exit ()
 import XMonad
+  ( Atom,
+    Button,
+    ChangeLayout (NextLayout),
+    Default (def),
+    Dimension,
+    Full (Full),
+    IncMasterN (IncMasterN),
+    KeyMask,
+    KeySym,
+    Layout,
+    ManageHook,
+    Mirror (Mirror),
+    MonadIO (..),
+    Resize (Expand, Shrink),
+    Tall (Tall),
+    Window,
+    X,
+    XConf (theRoot),
+    XConfig
+      ( XConfig,
+        borderWidth,
+        clickJustFocuses,
+        focusFollowsMouse,
+        focusedBorderColor,
+        handleEventHook,
+        keys,
+        layoutHook,
+        logHook,
+        manageHook,
+        modMask,
+        mouseBindings,
+        normalBorderColor,
+        startupHook,
+        terminal,
+        workspaces
+      ),
+    asks,
+    button1,
+    button2,
+    button3,
+    changeProperty32,
+    className,
+    composeAll,
+    controlMask,
+    doFloat,
+    doIgnore,
+    focus,
+    getAtom,
+    getWindowProperty32,
+    kill,
+    mod4Mask,
+    mouseMoveWindow,
+    mouseResizeWindow,
+    propModeAppend,
+    refresh,
+    resource,
+    screenWorkspace,
+    sendMessage,
+    setLayout,
+    shiftMask,
+    spawn,
+    whenJust,
+    windows,
+    withDisplay,
+    withFocused,
+    xK_1,
+    xK_9,
+    xK_Print,
+    xK_Return,
+    xK_Tab,
+    xK_a,
+    xK_b,
+    xK_c,
+    xK_comma,
+    xK_e,
+    xK_g,
+    xK_h,
+    xK_i,
+    xK_j,
+    xK_k,
+    xK_l,
+    xK_m,
+    xK_n,
+    xK_o,
+    xK_period,
+    xK_q,
+    xK_r,
+    xK_slash,
+    xK_space,
+    xK_t,
+    xK_u,
+    xK_w,
+    xK_y,
+    xK_z,
+    xmonad,
+    (-->),
+    (.|.),
+    (<+>),
+    (=?),
+    (|||), doShift,
+  )
+import XMonad.Actions.SpawnOn ()
 import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.ManageDocks
   ( Direction2D (D, L, R, U),
@@ -25,11 +127,11 @@ import XMonad.Layout.Gaps
     gaps,
     setGaps,
   )
-import XMonad.Layout.NoBorders
+import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.ResizableTile (MirrorResize (MirrorExpand, MirrorShrink), ResizableTall (ResizableTall))
 import XMonad.Layout.Spacing (Border (Border), spacingRaw)
 import qualified XMonad.StackSet as W
 import XMonad.Util.SpawnOnce (spawnOnce)
-import XMonad.Actions.SpawnOn
 
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
@@ -66,13 +168,10 @@ myModMask = mod4Mask
 -- A tagging example:
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
---
 myWorkspaces :: [String]
 myWorkspaces = ["terminal", "web", "files", "games", "chat", "other0", "other1", "other2", "spotify"]
--- myWorkspaces = ["\63083", "\63288", "\63306", "\61723", "\63107", "\63601", "\63391", "\61713", "\61884"]
 
 -- Border colors for unfocused and focused windows, respectively.
---
 myNormalBorderColor :: String
 myNormalBorderColor = "#3b4252"
 
@@ -98,7 +197,7 @@ addEWMHFullscreen = do
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-clipboardy :: MonadIO m => m () 
+clipboardy :: MonadIO m => m ()
 clipboardy = spawn "rofi -modi \"\63053 :greenclip print\" -show \"\63053 \" -run-command '{cmd}' -theme ~/.config/rofi/launcher/style.rasi"
 
 -- maimcopy = spawn "maim -s | xclip -selection clipboard -t image/png && notify-send \"Screenshot\" \"Copied to Clipboard\" -i flameshot"
@@ -149,7 +248,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       ((modm .|. shiftMask, xK_u), sendMessage $ DecGap 10 D), -- decrement the bottom gap
       ((modm .|. controlMask, xK_i), sendMessage $ IncGap 10 R), -- increment the right-hand gap
       ((modm .|. shiftMask, xK_i), sendMessage $ DecGap 10 R), -- decrement the right-hand gap
-
+      ((modm .|. shiftMask, xK_h), sendMessage MirrorShrink), -- shrink the master area
+      ((modm .|. shiftMask, xK_l), sendMessage MirrorExpand), -- expand the master area
       -- Rotate through the available layout algorithms
       ((modm, xK_space), sendMessage NextLayout),
       --  Reset the layouts on the current workspace to default
@@ -246,17 +346,34 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) =
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
-  where
-    -- default tiling algorithm partitions the screen into two panes
-    tiled = Tall nmaster delta ratio
 
+-- myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+--   where
+--     -- default tiling algorithm partitions the screen into two panes
+--     tiled = ResizableTall nmaster delta ratio
+
+--     -- The default number of windows in the master pane
+--     nmaster = 1
+
+--     -- Default proportion of screen occupied by master pane
+--     ratio = 1 / 2
+
+--     -- Percent of screen to increment by when resizing panes
+--     delta = 3 / 100
+
+myLayout =
+  avoidStruts $
+    tiled
+      ||| Mirror tiled
+      ||| Full
+  where
+    -- The last parameter is fraction to multiply the slave window heights
+    -- with. Useless here.
+    tiled = ResizableTall nmaster delta ratio []
     -- The default number of windows in the master pane
     nmaster = 1
-
     -- Default proportion of screen occupied by master pane
     ratio = 1 / 2
-
     -- Percent of screen to increment by when resizing panes
     delta = 3 / 100
 
@@ -283,6 +400,8 @@ myManageHook =
         className =? "Gimp" --> doFloat,
         resource =? "desktop_window" --> doIgnore,
         resource =? "kdesktop" --> doIgnore,
+        className =? "Steam" --> doShift "games",
+        className =? "discord" --> doShift "chat",
         isFullscreen --> doFullFloat
       ]
 
@@ -355,7 +474,7 @@ defaults =
       mouseBindings = myMouseBindings,
       -- hooks, layouts
       manageHook = myManageHook,
-      layoutHook = gaps [(L, 10), (R, 10), (U, 10), (D, 10)] $ spacingRaw True (Border 10 10 10 10) False (Border 10 10 10 10) True $ smartBorders $ myLayout,
+      layoutHook = gaps [(L, 10), (R, 10), (U, 10), (D, 10)] $ spacingRaw True (Border 10 10 10 10) False (Border 10 10 10 10) True $ smartBorders myLayout,
       handleEventHook = myEventHook,
       logHook = myLogHook,
       startupHook = myStartupHook >> addEWMHFullscreen
