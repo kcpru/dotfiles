@@ -148,7 +148,7 @@ set t_Co=256
 
 "Neovide + gui
 ""set guifont=SFMono\ Nerd\ Font:h13
-set guifont=FiraCode\ Nerd\ Font:h13
+set guifont=FiraCode\ Nerd\ Font:h11
 ""set guifont=FiraCode\ Nerd\ Font,DejaVu\ Sans:h13
 let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
