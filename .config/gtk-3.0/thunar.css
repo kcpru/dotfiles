@@ -1,0 +1,159 @@
+.thunar .sidebar {
+  background-color: #0f111a;
+}
+
+.thunar .standard-view .view {
+  background-color: #0f111a;
+  padding: 5px;
+}
+
+.thunar .sidebar .sidebar-header {
+  background-color: #0f111a;
+  padding: 20px;
+}
+
+.thunar .panels {
+  background-color: #0f111a;
+}
+
+.thunar {
+  opacity: 0.85;
+}
+
+.thunar * {
+  border: none;
+  font-size: 15px;
+}
+
+.thunar button {
+box-shadow: none;
+}
+
+/*buttons in toolbar*/
+
+.thunar toolbar {
+  margin-top: 0px;
+  padding: 15px;
+  background-color: #0f111a;
+  font-weight: bold;
+}
+
+.thunar toolbar toolitem widget box entry {
+  background: #1a1c25;
+  border-radius: 10px;
+  padding: 5px 15px;
+  margin-left: 20px;
+}
+
+.thunar toolbar toolitem widget box entry:focus {
+	background: #2b2c36;
+}
+
+.thunar toolbar.horizontal {
+  border-bottom: 1px solid #0f111a;
+}
+
+.thunar toolbar.horizontal button image {
+  -gtk-icon-transform: scale(0.9);
+}
+
+.thunar toolbar.horizontal button {
+  background-color: #0f111a;
+  border-radius: 10px;
+  border: none;
+  padding: 8px 9px;
+}
+
+.thunar toolbar input {
+  background-color: #0f111a;
+  border-radius: 10px;
+  border: none;
+}
+
+.thunar toolbar.horizontal button:hover {
+  background-color: #1a1c25;
+  transistion: 0;
+}
+
+scrolledwindow.sidebar treeview.view {
+  border: none;
+  background: #0f111a;
+  color: #ffffff;
+}
+
+/*path-bar of thunar*/
+.thunar toolbar#location-toolbar {
+  color: #ffffff;
+  background-color: #82aaff;
+  border-radius: 20px 20px 20px 20px;
+
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+window.thunar
+  toolbar#location-toolbar
+  > toolitem
+  > widget
+  > widget.linked.path-bar
+  > button.path-bar-button {
+  background: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+
+/*thunar sidepane*/
+
+window.thunar paned > scrolledwindow treeview.view:selected {
+  background: #82aaff;
+  color: #0f111a;
+}
+
+window.thunar paned > scrolledwindow treeview.view {
+  padding: 5px 0;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+window.thunar paned > scrolledwindow {
+  padding: 0 20px;
+}
+
+window.thunar paned > scrolledwindow treeview.view:selected {
+  background-color: #82aaff;
+  color: #0f111a;
+}
+
+window grid paned.horizontal statusbar {
+	padding: 5px;
+}
+
+window.thunar grid paned grid notebook scrolledwindow {
+  background: #0f111a;
+  padding: 5px 20px 0 0;
+}
+
+window.thunar grid paned grid notebook scrolledwindow button {
+  background: #1a1c25;
+  padding: 10px 15px;
+  margin: 0 10px 0 0;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+window.thunar grid paned grid notebook scrolledwindow button:hover {
+  background: #2b2d36;
+}
+
+window.thunar grid paned grid notebook scrolledwindow button:nth-child(4) {
+  margin: 0;
+}
+
+.thunar paned {
+  background-color: #1a1c25;
+}
+
+/* Scrikkbar Slider */
+.thunar grid paned grid notebook scrolledwindow scrollbar slider {
+  background: #1a1c25;
+}
