@@ -157,3 +157,7 @@ window.thunar grid paned grid notebook scrolledwindow button:nth-child(4) {
 .thunar grid paned grid notebook scrolledwindow scrollbar slider {
   background: #1a1c25;
 }
+
+.thunar separator {
+background: #0f111a;
+}
