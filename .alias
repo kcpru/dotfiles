@@ -22,3 +22,6 @@ alias icat="kitty +kitten icat"
 
 # git
 alias config='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# neovide
+alias nvide='neovide'
