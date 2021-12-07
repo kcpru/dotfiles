@@ -35,7 +35,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'kyazdani42/nvim-web-devicons'
 
 "minimap // enable when supported in openGL neovide
-""Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 
 "git
 Plug 'tpope/vim-fugitive', { 'on': [] }
@@ -156,11 +156,11 @@ let g:neovide_refresh_rate=60
 let g:neovide_keyboard_layout="qwerty"
 
 let g:neovide_cursor_vfx_mode = "pixiedust"
-let g:neovide_cursor_animation_length=0.15
+let g:neovide_cursor_animation_length=0.10
 let g:neovide_cursor_trail_length=0.8
 let g:neovide_cursor_vfx_particle_density=55
 let g:neovide_cursor_vfx_particle_lifetime=2
-
+let g:neovide_transparency=0.5
 
 "__VIM_SETTINGS__"
 
