@@ -36,7 +36,7 @@ textbox-prompt-colon {
 	expand: 						true;
 	str: 							"Goodbye, kcpru";
 	background-color: 				#00000000;
-	text-color: 					@selected;
+	text-color: 					#ffffffe0;
     padding:                        3% 0.5% 1% 0%;
 }
 
