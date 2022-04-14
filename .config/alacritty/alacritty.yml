@@ -1,0 +1,44 @@
+# Font
+font:
+  normal:
+    family: Fira Code Nerd Font
+
+# Window
+window:
+  padding:
+    x: 20
+    y: 20
+
+# Colors
+colors:
+  cursor:
+    text: '#ffffff'
+    cursor: '#a6accd'
+
+  primary:
+    background: '#0f111a'
+    foreground: '#a6accd'
+
+  selection:
+    foreground: '#0f111a'
+    background: '#a6accd'
+
+  normal:
+    black: '#1a1c25'
+    red: '#f07178'
+    green: '#c3e88d'
+    yellow: '#ffcb6b'
+    blue: '#82aaff'
+    magenta: '#c792ea'
+    cyan: '#89ddff'
+    white: '#ffffff'
+
+  bright:
+    black: '#3b3e4c'
+    red: '#ff8b92'
+    green: '#ddffa7'
+    yellow: '#ffe585'
+    blue: '#9cc4ff'
+    magenta: '#e1acff'
+    cyan: '#a3f7ff'
+    white: '#ffffff'
