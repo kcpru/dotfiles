@@ -51,6 +51,7 @@ import XMonad
     controlMask,
     doFloat,
     doIgnore,
+    doShift,
     focus,
     getAtom,
     getWindowProperty32,
@@ -104,7 +105,7 @@ import XMonad
     (.|.),
     (<+>),
     (=?),
-    (|||), doShift,
+    (|||),
   )
 import XMonad.Actions.SpawnOn ()
 import XMonad.Hooks.EwmhDesktops (ewmh)
@@ -119,7 +120,7 @@ import XMonad.Layout.Fullscreen
   ( fullscreenEventHook,
     fullscreenFull,
     fullscreenManageHook,
-    fullscreenSupport,
+    fullscreenSupport, fullscreenFloat,
   )
 import XMonad.Layout.Gaps
   ( Direction2D (D, L, R, U),
@@ -233,7 +234,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- My Stuff
       ((modm, xK_b), spawn "exec ~/bin/bartoggle"),
       ((modm, xK_z), spawn "exec ~/bin/inhibit_activate"),
-      ((modm .|. shiftMask, xK_z), spawn "exec ~/bin/inhibit_deactivatinhibit_deactivateinhibit_deactivatee"),
+      ((modm .|. shiftMask, xK_z), spawn "exec ~/bin/inhibit_deactivate"),
       ((modm .|. shiftMask, xK_a), clipboardy),
       -- close focused window
       ((modm .|. shiftMask, xK_c), kill),
@@ -289,9 +290,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) =
       -- Quit xmonad
       ((modm .|. shiftMask, xK_q), spawn "~/bin/powermenu.sh"),
       -- Restart xmonad
-      ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart"),
-      -- Run xmessage with a summary of the default keybindings (useful for beginners)
-      ((modm .|. shiftMask, xK_slash), spawn ("echo \"" ++ help ++ "\" | xmessage -file -"))
+      ((modm, xK_q), spawn "xmonad --recompile; xmonad --restart")
     ]
       ++
       --
@@ -402,6 +401,9 @@ myManageHook =
         resource =? "kdesktop" --> doIgnore,
         className =? "Steam" --> doShift "games",
         className =? "discord" --> doShift "chat",
+        className =? "telegram-desktop" --> doShift "chat",
+        className =? "Spotify" --> doShift "spotify",
+        className =? "Glava" --> doFullFloat,
         isFullscreen --> doFullFloat
       ]
 
@@ -436,6 +438,7 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook :: X ()
 myStartupHook = do
+  spawnOnce "exec glava --desktop --force-mod=circle"
   spawnOnce "exec ~/bin/bartoggle"
   spawnOnce "feh --bg-scale ~/.wallpaper/background.png"
   spawnOnce "picom --experimental-backends"
@@ -443,6 +446,12 @@ myStartupHook = do
   spawnOnce "dunst"
 
   spawn "xsetroot -cursor_name left_ptr"
+
+  -- App
+  spawn "discord"
+  -- spawn "flatpak run com.valvesoftware.Steam"
+  spawn "telegram-desktop"
+  spawn "firefox"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -479,56 +488,3 @@ defaults =
       logHook = myLogHook,
       startupHook = myStartupHook >> addEWMHFullscreen
     }
-
-help :: String
-help =
-  unlines
-    [ "The default modifier key is 'super'. Default keybindings:",
-      "",
-      "-- launching and killing programs",
-      "mod-Shift-Enter  Launch xterminal",
-      "mod-p            Launch dmenu",
-      "mod-Shift-p      Launch gmrun",
-      "mod-Shift-c      Close/kill the focused window",
-      "mod-Space        Rotate through the available layout algorithms",
-      "mod-Shift-Space  Reset the layouts on the current workSpace to default",
-      "mod-n            Resize/refresh viewed windows to the correct size",
-      "",
-      "-- move focus up or down the window stack",
-      "mod-Tab        Move focus to the next window",
-      "mod-Shift-Tab  Move focus to the previous window",
-      "mod-j          Move focus to the next window",
-      "mod-k          Move focus to the previous window",
-      "mod-m          Move focus to the master window",
-      "",
-      "-- modifying the window order",
-      "mod-Return   Swap the focused window and the master window",
-      "mod-Shift-j  Swap the focused window with the next window",
-      "mod-Shift-k  Swap the focused window with the previous window",
-      "",
-      "-- resizing the master/slave ratio",
-      "mod-h  Shrink the master area",
-      "mod-l  Expand the master area",
-      "",
-      "-- floating layer support",
-      "mod-t  Push window back into tiling; unfloat and re-tile it",
-      "",
-      "-- increase or decrease number of windows in the master area",
-      "mod-comma  (mod-,)   Increment the number of windows in the master area",
-      "mod-period (mod-.)   Deincrement the number of windows in the master area",
-      "",
-      "-- quit, or restart",
-      "mod-Shift-q  Quit xmonad",
-      "mod-q        Restart xmonad",
-      "mod-[1..9]   Switch to workSpace N",
-      "",
-      "-- Workspaces & screens",
-      "mod-Shift-[1..9]   Move client to workspace N",
-      "mod-{w,e,r}        Switch to physical/Xinerama screens 1, 2, or 3",
-      "mod-Shift-{w,e,r}  Move client to screen 1, 2, or 3",
-      "",
-      "-- Mouse bindings: default actions bound to mouse events",
-      "mod-button1  Set the window to floating mode and move by dragging",
-      "mod-button2  Raise the window to the top of the stack",
-      "mod-button3  Set the window to floating mode and resize by dragging"
-    ]

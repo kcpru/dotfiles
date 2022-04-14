@@ -115,6 +115,14 @@ Plug 'Chiel92/vim-autoformat'
 " Github Copilot
 Plug 'github/copilot.vim'
 
+" Flutter
+Plug 'nvim-lua/plenary.nvim'
+Plug 'akinsho/flutter-tools.nvim'
+
+" React js
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
+
 call plug#end()
 
 
@@ -148,7 +156,7 @@ set t_Co=256
 
 "Neovide + gui
 ""set guifont=SFMono\ Nerd\ Font:h13
-set guifont=FiraCode\ Nerd\ Font:h11
+set guifont=FiraCode\ Nerd\ Font:h12
 ""set guifont=FiraCode\ Nerd\ Font,DejaVu\ Sans:h13
 let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
@@ -683,6 +691,11 @@ autocmd! User GoyoLeave Limelight!
 
 
 "__LUA__"
+
+" Flutter
+lua << EOF
+  require("flutter-tools").setup{} -- use defaults
+EOF
 
 
 "zen-mode settings
