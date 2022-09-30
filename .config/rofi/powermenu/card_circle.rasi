@@ -9,7 +9,7 @@ configuration {
 	sidebar-mode: 					false;
 }
 
-@import "colors.rasi"
+@import "../colors.rasi"
 
 window {
     transparency:                   "real";
@@ -35,14 +35,14 @@ prompt {
 textbox-prompt-colon {
 	expand: 						true;
 	str: 							"Goodbye, kcpru";
-	background-color: 				#00000000;
-	text-color: 					#ffffffe0;
+	background-color: 				transparent;
+	text-color: 					#FFFFFFE0;
     padding:                        3% 0.5% 1% 0%;
 }
 
 inputbar {
 	children: 						[ textbox-prompt-colon ];
-    background-color:               #00000000;
+    background-color:               transparent;
     text-color:                     @foreground;
     expand:                         false;
     margin:                         0% 3% 0% 9.5%;
@@ -51,7 +51,7 @@ inputbar {
 }
 
 listview {
-    background-color:               #00000000;
+    background-color:               transparent;
     margin:                         0% 0% 0% 0.5%;
     spacing:                        1%;
     cycle:                          true;
@@ -60,7 +60,7 @@ listview {
 }
 
 mainbox {
-    background-color:               #00000000;
+    background-color:               transparent;
     children:                       [ inputbar, listview ];
     spacing:                        1.5%;
     padding:                        0.5% 0% 0% 2%;
@@ -79,8 +79,8 @@ element-text {
     horizontal-align:               0.5;
     vertical-align:                 0.5;
     text-color: 					inherit;
-    background-color:               #00000000;
-    margin:                         2.5% 1.5% 2.5% 1.5%;
+    background-color:               transparent;
+    margin:                         2.1% 1.5% 2.1% 1.5%;
 }
 
 element-text selected {
