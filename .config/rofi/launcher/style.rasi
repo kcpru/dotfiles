@@ -44,7 +44,7 @@ window {
 prompt {
     spacing: 						0;
     border: 						0;
-    text-color: 					@fg;
+    text-color: 					@foreground;
 }
 
 textbox-prompt-colon {
@@ -56,17 +56,17 @@ textbox-prompt-colon {
 
 entry {
     spacing:    					0;
-    text-color: 					@fg;
+    text-color: 					@foreground;
 }
 
 case-indicator {
     spacing:    					0;
-    text-color: 					@fg;
+    text-color: 					@foreground;
 }
 
 inputbar {
     spacing:    					0px;
-    text-color: 					@fg;
+    text-color: 					@foreground;
     background-color:               #00000030;
     margin:    					    0 3 30 3;
     border-radius:                  7;
@@ -81,22 +81,18 @@ mainbox {
 }
 
 listview {
-    fixed-height: 					0;
-    border: 						0px;
-    border-color: 					@ac;
     spacing: 						5px;
     scrollbar: 						false;
     padding: 						5px 5px 0px 5px;
 }
 
 element {
-    border: 						0px;
     border-radius: 				    7;
-    padding: 						5px;
+    padding: 						7px;
 }
 element normal.normal {
     background-color:               transparent;
-    text-color:       				@fg;
+    text-color:       				@foreground;
 }
 element normal.urgent {
     background-color:               transparent;
@@ -104,31 +100,31 @@ element normal.urgent {
 }
 element normal.active {
     background-color: 				@green;
-    text-color:       				@bg;
+    text-color:       				@background;
 }
 element selected.normal {
     background-color: 				@blue;
-    text-color:       				@bg;
+    text-color:       				@dark;
 }
 element selected.urgent {
-    background-color: 				@bg;
+    background-color: 				@background;
     text-color:       				@red;
 }
 element selected.active {
-    background-color: 				@fg;
-    text-color:       				@bg;
+    background-color: 				@foreground;
+    text-color:       				@background;
 }
 element alternate.normal {
     background-color: 				transparent;
-    text-color:       				@fg;
+    text-color:       				@foreground;
 }
 element alternate.urgent {
     background-color: 				@red;
-    text-color:       				@bg;
+    text-color:       				@background;
 }
 element alternate.active {
     background-color: 				@green;
-    text-color:       				@bg;
+    text-color:       				@background;
 }
 
 element-text, element-icon {
@@ -150,7 +146,7 @@ button {
     background-color:             	#00000030;
     margin: 						30 5 0 5;
     padding: 						8px 0 8px 0;
-    text-color: 					@fg;
+    text-color: 					@foreground;
     border: 						0;
     text-color:                     @blue;
     border-radius: 					7;
@@ -160,10 +156,10 @@ button selected {
     background-color:             	@blue;
     text-color: 					#000000;
     border-radius: 					7px;
-    border-color: 					@fg;
+    border-color: 					@foreground;
 }
 
 // Error message
 textbox {
-    text-color: 					@fg;
+    text-color: 					@foreground;
 }

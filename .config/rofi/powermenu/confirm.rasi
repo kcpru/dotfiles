@@ -4,7 +4,7 @@
 
 * {
     background-color:       transparent;
-    text-color:             @selected;
+    text-color:             @blue;
 	font:				 	"Fira Code Nerd Font Medium 16";
 }
 

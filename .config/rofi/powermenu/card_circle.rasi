@@ -67,8 +67,8 @@ mainbox {
 }
 
 element {
-    background-color:               @background-alt;
-    text-color:                     @selected;
+    background-color:               @background;
+    text-color:                     @blue;
     orientation:                    horizontal;
     border-radius:                  100%;
 }
@@ -96,12 +96,12 @@ element alternate.urgent {
 
 element normal.active,
 element alternate.active {
-    background-color:               @selected;
+    background-color:               @blue;
     text-color:                     #0f111a;
 }
 
 element selected {
-    background-color:               @selected;
+    background-color:               @blue;
     text-color:                     #0f111a;
 }
 
@@ -111,6 +111,6 @@ element selected.urgent {
 }
 
 element selected.active {
-    background-color:               @background-alt;
+    background-color:               @background;
     text-color:                     #0f111a;
 }
