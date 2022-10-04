@@ -5,9 +5,11 @@ font:
 
 # Window
 window:
+  opacity: 0.85
   padding:
     x: 20
     y: 20
+
 
 # Colors
 colors:
