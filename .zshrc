@@ -228,6 +228,7 @@ plugins=(
 	fzf
 	git
 	pip
+    python
 	history-substring-search
 	colored-man-pages
 	zsh-autosuggestions
