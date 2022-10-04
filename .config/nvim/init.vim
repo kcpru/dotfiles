@@ -17,7 +17,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \| endif
 
 call plug#begin('~/.vim/plugged')
-" Coc
+"coc
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "statusline/bufferline
@@ -34,10 +34,6 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': 'NERDTreeToggle' }
 Plug 'kyazdani42/nvim-web-devicons'
 
-"minimap // enable when supported in openGL neovide
-Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-
-"git
 Plug 'tpope/vim-fugitive', { 'on': [] }
 ""Plug 'airblade/vim-gitgutter'
 
@@ -52,12 +48,9 @@ Plug 'kdav5758/TrueZen.nvim'
 Plug 'junegunn/goyo.vim', {'on': 'Goyo' }
 Plug 'junegunn/limelight.vim', {'on': 'Goyo' }
 
-"syntax/themes (treesitter replacing polygot)
-""Plug 'arcticicestudio/nord-vim'
-""Plug 'Brettm12345/moonlight.vim'
-""Plug 'GustavoPrietoP/doom-one.vim'
+"syntax/themes
 Plug 'shaunsingh/material.nvim'
-""Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 "add color to hex
 Plug 'norcalli/nvim-colorizer.lua'
@@ -66,6 +59,7 @@ Plug 'norcalli/nvim-colorizer.lua'
 Plug 'kana/vim-textobj-user', {'for': 'markdown'}
 Plug 'preservim/vim-textobj-quote', {'for': 'markdown'}
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+
 "kotlin support
 Plug 'udalov/kotlin-vim', {'for': 'kotlin'}
 
@@ -80,46 +74,46 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'dense-analysis/ale'
 Plug 'maximbaz/lightline-ale'
 
-"rich presence
-""Plug 'andweeb/presence.nvim'
-
 "easymotions
 Plug 'phaazon/hop.nvim'
 
-"cool animations
+"animations
 Plug 'camspiers/animate.vim'
 Plug 'camspiers/lens.vim'
 Plug 'yuttie/comfortable-motion.vim'
 
-" Material vim
+"material vim
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
-" Php
+"php
 Plug 'phpactor/phpactor', {'for': 'php', 'tag': '*', 'do': 'composer install --no-dev -o'}
 Plug 'phpactor/ncm2-phpactor', {'for': 'php'}
 Plug 'ncm2/ncm2-ultisnips'
 
-" Better Visual Guide
+"better visual guide
 Plug 'Yggdroot/indentLine'
-" syntax check
+
+"syntax check
 Plug 'w0rp/ale'
-" Autocomplete
+
+"autocomplete
 Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'ncm2/ncm2-bufword'
 Plug 'ncm2/ncm2-path'
 Plug 'ncm2/ncm2-jedi'
-" Formater
+
+"formater
 Plug 'Chiel92/vim-autoformat'
 
-" Github Copilot
+"github copilot
 Plug 'github/copilot.vim'
 
-" Flutter
+"flutter
 Plug 'nvim-lua/plenary.nvim'
 Plug 'akinsho/flutter-tools.nvim'
 
-" React js
+"reactjs
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 
@@ -154,10 +148,8 @@ syntax enable
 "set 256 colors
 set t_Co=256
 
-"Neovide + gui
-""set guifont=SFMono\ Nerd\ Font:h13
+"neovide + gui
 set guifont=FiraCode\ Nerd\ Font:h12
-""set guifont=FiraCode\ Nerd\ Font,DejaVu\ Sans:h13
 let g:neovide_cursor_antialiasing=v:true
 let g:neovide_fullscreen=v:false
 let g:neovide_refresh_rate=60
@@ -168,7 +160,7 @@ let g:neovide_cursor_animation_length=0.10
 let g:neovide_cursor_trail_length=0.8
 let g:neovide_cursor_vfx_particle_density=55
 let g:neovide_cursor_vfx_particle_lifetime=2
-let g:neovide_transparency=0.5
+let g:neovide_transparency=0.8
 
 "__VIM_SETTINGS__"
 
@@ -184,7 +176,7 @@ set relativenumber
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=NONE ctermfg=NONE guibg=NONE guifg=NONE
 hi clear CursorLine
-"Reset cursorline everytime colorscheme updates because stupid vim
+"reset cursorline everytime colorscheme updates because stupid vim
 augroup CLClear
     autocmd! ColorScheme * hi clear CursorLine
 augroup END
@@ -446,18 +438,6 @@ endfunction
 
 let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
 
-"doom
-""""let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:#bbc2cf,bg:#3c4557,hl:#baacff,fg+:#bbc2cf,bg+:#3c4557,hl+:#5B6268 --color=info:#3c4557,prompt:#3c4557,pointer:#c678dd,marker:#3c4557,spinner:#3c4557,header:-1 --layout=reverse  --margin=1,4'
-
-"nord
-""let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:#bbc2cf,bg:#414C60,hl:#baacff,fg+:#bbc2cf,bg+:#414C60,hl+:#5B6268 --color=info:#414C60,prompt:#414C60,pointer:#c678dd,marker:#414C60,spinner:#414C60,header:-1 --layout=reverse  --margin=1,4'
-
-"material ocean
-""let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:#bbc2cf,bg:#10141c,hl:#baacff,fg+:#bbc2cf,bg+:#10141c,hl+:#5B6268 --color=info:#10141c,prompt:#10141c,pointer:#c678dd,marker:#10141c,spinner:#10141c,header:-1 --layout=reverse  --margin=1,4'
-
-"material palenight
-""let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:#bbc2cf,bg:#282d3f,hl:#baacff,fg+:#bbc2cf,bg+:#282d3f,hl+:#5B6268 --color=info:#282d3f,prompt:#282d3f,pointer:#c678dd,marker:#282d3f,spinner:#282d3f,header:-1 --layout=reverse  --margin=1,4'
-
 "custom
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:#bbc2cf,bg:#2f334d,hl:#baacff,fg+:#bbc2cf,bg+:#2f334d,hl+:#5B6268 --color=info:#2f334d,prompt:#2f334d,pointer:#c678dd,marker:#2f334d,spinner:#2f334d,header:-1 --layout=reverse  --margin=1,4'
 
@@ -599,55 +579,36 @@ let g:webdevicons_conceal_nerdtree_brackets = 1
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 let g:NERDTreeHighlightCursorline = 0
 "better ui
-let NERDTreeMinimalUI=1
-let NERDTreeDirArrows=1
+let NERDTreeMinimalUI= 1
+let NERDTreeDirArrows= 1
 let g:NERDTreeDirArrowExpandable = '»'
 let g:NERDTreeDirArrowCollapsible = '«'
 "let me see dotfiles
-let NERDTreeShowHidden=1
+let NERDTreeShowHidden= 1
 
 "dashboard (use fzf + doom logo)
 let g:dashboard_default_executive ='fzf'
-
 let g:dashboard_custom_header =  [
-\ '                          @@@@@@@ @@@  @@@ @@@@@@@@                              ',
-\ '                            @@!   @@!  @@@ @@!                                   ',
-\ '                            @!!   @!@!@!@! @!!!:!                                ',
-\ '                            !!:   !!:  !!! !!:                                   ',
-\ '                             :     :   : : : :: :::                              ',
-\ '                                                                                 ',
-\ '  @@@@@@@  @@@@@@@   @@@@@@  @@@  @@@ @@@@@@@@ @@@ @@@  @@@@@@  @@@@@@@  @@@@@@@ ',
-\ ' !@@       @@!  @@@ @@!  @@@ @@!  @@@ @@!      @@! !@@ @@!  @@@ @@!  @@@ @@!  @@@',
-\ ' !@! @!@!@ @!@!!@!  @!@!@!@! @!@  !@! @!!!:!    !@!@!  @!@!@!@! @!@!!@!  @!@  !@!',
-\ ' :!!   !!: !!: :!!  !!:  !!!  !: .:!  !!:        !!:   !!:  !!! !!: :!!  !!:  !!!',
-\ '  :: :: :   :   : :  :   : :    ::    : :: :::   .:     :   : :  :   : : :: :  : ',
-\ '                                                                                 ',
-\ '                      @@@@@@ @@@  @@@ @@@ @@@@@@@@ @@@@@@@                       ',
-\ '                     !@@     @@!  @@@ @@! @@!        @@!                         ',
-\ '                      !@@!!  @!@!@!@! !!@ @!!!:!     @!!                         ',
-\ '                         !:! !!:  !!! !!: !!:        !!:                         ',
-\ '                     ::.: :   :   : : :    :          :                          ',
-\ '                                                                                 ',
+\ '',
+\ '',
+\ '',
+\ ' ▀██ ▄█▀  ▄████▄   ██▓███    ██▀███    █    ██ ',
+\ '  ██▄█▒  ▒██▀ ▀█  ▓██░  ██  ▓██ ▒ ██▒  ██  ▓██▒',
+\ ' ▓███▄░  ▒▓█    ▄ ▓██░ ██▓▒ ▓██ ░▄█ ▒ ▓██  ▒██░',
+\ ' ▓██ █▄  ▒▓▓▄ ▄██ ▒██▄█▓▒ ▒ ▒██▀▀█▄   ▓▓█  ░██░',
+\ ' ▒██▒ █▄ ▒ ▓███▀  ▒██▒ ░  ░ ░██▓ ▒██▒ ▒▒█████▓ ',
+\ ' ▒ ▒▒ ▓▒ ░ ░▒ ▒   ▒▓▒░ ░  ░ ░ ▒▓ ░▒▓░  ▒▓▒ ▒ ▒ ',
+\ ' ░ ░▒ ▒░   ░  ▒   ░▒ ░        ░▒ ░ ▒░  ░▒░ ░ ░ ',
+\ ' ░ ░░ ░  ░        ░░           ░   ░    ░░ ░ ░ ',
+\ ' ░  ░    ░ ░                   ░         ░     ',
+\ '',
+\ '',
+\ '',
 \]
-
-
-"minimap
-let g:minimap_width = 10
-let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
 
 "limelight
 ""let g:limelight_default_coefficient = 0.7
 let g:limelight_paragraph_span = 0
-
-"discord presence
-"let g:presence_auto_update       = 1
-"let g:presence_editing_text      = "Editing %s"
-"let g:presence_workspace_text    = "Working on %s"
-"let g:presence_neovim_image_text = "The One True Text Editor"
-"let g:presence_main_image        = "neovim"
-"let g:presence_client_id         = "793271441293967371"
-"let g:presence_debounce_timeout  = 15
 
 "Vim multi-cursors
 "use alt instead of ctrl
