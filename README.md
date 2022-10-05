@@ -1,7 +1,7 @@
-# My personal dotfiles
+# 🚀 My personal dotfiles  
 ![screenshot](https://imgur.com/peOuUcP.gif)
 
-## What i use
+## ✨ What i use
 - [XMonad](https://xmonad.org/) - window manager
 - [Picom](https://github.com/yshui/picom) - compositor (with kawase blur)
 - [Glava](https://github.com/jarcode-foss/glava) - audio visualizer
@@ -17,17 +17,16 @@
 - [Dunst](https://dunst-project.org/) - notification daemon
 - [Ranger](https://github.com/ranger/ranger) - terminal file manager
 - [Thunar](https://gitlab.xfce.org/xfce/thunar) - file manager
+- [Bat](https://github.com/sharkdp/bat) - replacement for `cat`
+- [Exa](https://github.com/ogham/exa) - replacement for `ls`
 - [Flameshot](https://flameshot.org/) - screenshot tool
 - [Fira Code](https://github.com/tonsky/FiraCode) - font (with ligatures)
 
-## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## Screenshots
+## 🔥 Screenshots
 ![screenshot](https://imgur.com/iiSTjb7.png)
 ![screenshot](https://imgur.com/knuNSvP.png)
 
-## TODO
+## ⚡ TODO
 - [ ] Add a pywal script to change the colorscheme of the programs
 - [ ] Add a script to install dotfiles
 - [ ] Improve the code
