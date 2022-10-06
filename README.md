@@ -1,4 +1,4 @@
-# 🍚 My personal dotfiles  
+# 🚀 My personal dotfiles  
 ![screenshot](https://imgur.com/peOuUcP.gif)
 
 ## ✨ What i use
