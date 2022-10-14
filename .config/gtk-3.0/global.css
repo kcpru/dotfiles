@@ -1,0 +1,47 @@
+.text-button, button {
+  border: none;
+  border-radius: 5px;
+  background: #2b2d36;
+  box-shadow: none;
+  margin: 5px;
+  transition: 0.15s;
+}
+
+.text-button:hover, button:hover {
+  background: #3c3e47;
+}
+
+* {
+  font-family: "FiraCode Nerd Font", monospace;
+}
+
+entry {
+  background: #1a1c25;
+  border-radius: 10px;
+  border: none;
+  padding: 5px 15px;
+  transition: 0.15s;
+  font-weight: bold;
+}
+
+entry:focus {
+  background: #2b2d36;
+}
+
+separator {
+    background: #1a1c25;
+}
+
+dialog-vbox1 {
+background: #0f111a;
+}
+
+.search-bar {
+padding: 10px;
+background: #0f111a;
+}
+
+.sidebar {
+	background: #0f111a;
+	padding: 0  20px;
+}

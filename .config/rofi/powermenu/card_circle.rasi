@@ -1,0 +1,116 @@
+configuration {
+	font:							"Fira Code Nerd Font Medium 20";
+    show-icons:                     false;
+	icon-theme: 					"Papirus";
+    drun-display-format:            "{name}";
+    disable-history:                false;
+    fullscreen:                     false;
+	hide-scrollbar: 				true;
+	sidebar-mode: 					false;
+}
+
+@import "../colors.rasi"
+
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    text-color:                     @foreground;
+    border-radius:                  12px;
+    border:                         3px;
+    border-color:                   @blue;
+    height:                         320px;
+    width:                          840px;
+    location:                       center;
+    x-offset:                       0;
+    y-offset:                       0;
+}
+
+prompt {
+    enabled: 						false;
+    padding:                        0.5% 0.5% 0.5% 0%;
+	background-color: 				@background;
+	text-color: 					@foreground;
+}
+
+textbox-prompt-colon {
+	expand: 						true;
+	str: 							"Goodbye, kcpru";
+	background-color: 				transparent;
+	text-color: 					#FFFFFFE0;
+    padding:                        3% 0.5% 1% 0%;
+}
+
+inputbar {
+	children: 						[ textbox-prompt-colon ];
+    background-color:               transparent;
+    text-color:                     @foreground;
+    expand:                         false;
+    margin:                         0% 3% 0% 9.5%;
+    padding:                        0.5%;
+    position:                       center;
+}
+
+listview {
+    background-color:               transparent;
+    margin:                         0% 0% 0% 0.5%;
+    spacing:                        1%;
+    cycle:                          true;
+    dynamic:                        true;
+    layout:                         horizontal;
+}
+
+mainbox {
+    background-color:               transparent;
+    children:                       [ inputbar, listview ];
+    spacing:                        1.5%;
+    padding:                        0.5% 0% 0% 2%;
+}
+
+element {
+    background-color:               @background;
+    text-color:                     @blue;
+    orientation:                    horizontal;
+    border-radius:                  100%;
+}
+
+element-text {
+	font:							"feather 32";
+    expand:                         true;
+    horizontal-align:               0.5;
+    vertical-align:                 0.5;
+    text-color: 					inherit;
+    background-color:               transparent;
+    margin:                         2.1% 1.5% 2.1% 1.5%;
+}
+
+element-text selected {
+    text-color:                     #0F111A;
+}
+
+element normal.urgent,
+element alternate.urgent {
+    background-color:               @urgent;
+    text-color:                     @foreground;
+    border-radius:                  0.2%;
+}
+
+element normal.active,
+element alternate.active {
+    background-color:               @blue;
+    text-color:                     #0f111a;
+}
+
+element selected {
+    background-color:               @blue;
+    text-color:                     #0f111a;
+}
+
+element selected.urgent {
+    background-color:               @urgent;
+    text-color:                     #0f111a;
+}
+
+element selected.active {
+    background-color:               @background;
+    text-color:                     #0f111a;
+}

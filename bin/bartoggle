@@ -1,0 +1,8 @@
+#!/bin/bash
+if pgrep polybar; then
+	pkill polybar
+	exit 1
+else
+	exec ~/.config/polybar/launch.sh &
+fi
+exit

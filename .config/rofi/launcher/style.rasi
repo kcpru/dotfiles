@@ -1,0 +1,165 @@
+configuration {
+    lines:							10;
+    columns:						1;
+    font: 							"Fira Code Nerd Font Medium 11";
+    bw: 							0;
+    location: 						0;
+    padding: 						0;
+    fixed-num-lines: 				true;
+    show-icons: 					true;
+    sidebar-mode: 					true;
+    separator-style: 				"none";
+    hide-scrollbar: 				true;
+    fullscreen: 					false;
+    fake-transparency: 				false;
+    scroll-method: 					0;
+    window-format: 					"[{w}] ··· {c} ···   {t}";
+    click-to-exit: 					true;
+    show-match: 					false;
+    combi-hide-mode-prefix: 		false;
+    display-window: 				"Window";
+    display-windowcd: 				" ";
+    display-run: 					"Run";
+    display-ssh: 					"Ssh";
+    display-drun: 					"Apps";
+    display-combi: 					" ";
+}
+
+@import "colors.rasi"
+
+* {
+    background-color: 				transparent;
+}
+
+window {
+    transparency:                   "real";
+    background-color:               @background;
+    border: 						3px;
+    border-color: 					@blue;
+    border-radius: 					12px;
+    padding: 						30;
+    width: 							22%;
+}
+
+prompt {
+    spacing: 						0;
+    border: 						0;
+    text-color: 					@foreground;
+}
+
+textbox-prompt-colon {
+    expand: 						false;
+    str: 							" ";
+    margin:							0px 4px 0px 0px;
+    text-color: 					inherit;
+}
+
+entry {
+    spacing:    					0;
+    text-color: 					@foreground;
+}
+
+case-indicator {
+    spacing:    					0;
+    text-color: 					@foreground;
+}
+
+inputbar {
+    spacing:    					0px;
+    text-color: 					@foreground;
+    background-color:               #00000030;
+    margin:    					    0 3 30 3;
+    border-radius:                  7;
+    padding: 10;
+    children: 						[ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+mainbox {
+    border: 						0px;
+    border-color: 					transparent;
+    padding: 						6;
+}
+
+listview {
+    spacing: 						5px;
+    scrollbar: 						false;
+    padding: 						5px 5px 0px 5px;
+}
+
+element {
+    border-radius: 				    7;
+    padding: 						7px;
+}
+element normal.normal {
+    background-color:               transparent;
+    text-color:       				@foreground;
+}
+element normal.urgent {
+    background-color:               transparent;
+    text-color:       				@red;
+}
+element normal.active {
+    background-color: 				@green;
+    text-color:       				@background;
+}
+element selected.normal {
+    background-color: 				@blue;
+    text-color:       				@dark;
+}
+element selected.urgent {
+    background-color: 				@background;
+    text-color:       				@red;
+}
+element selected.active {
+    background-color: 				@foreground;
+    text-color:       				@background;
+}
+element alternate.normal {
+    background-color: 				transparent;
+    text-color:       				@foreground;
+}
+element alternate.urgent {
+    background-color: 				@red;
+    text-color:       				@background;
+}
+element alternate.active {
+    background-color: 				@green;
+    text-color:       				@background;
+}
+
+element-text, element-icon {
+    background-color:               inherit;
+    text-color:                     inherit;
+    size: 26px;
+}
+
+element-icon {
+    margin: 0 2px 0 0;
+}
+
+element-text {
+    margin: 4px 0 0 2px;
+}
+
+// Botton buttons "display-*"
+button {
+    background-color:             	#00000030;
+    margin: 						30 5 0 5;
+    padding: 						8px 0 8px 0;
+    text-color: 					@foreground;
+    border: 						0;
+    text-color:                     @blue;
+    border-radius: 					7;
+}
+
+button selected {
+    background-color:             	@blue;
+    text-color: 					#000000;
+    border-radius: 					7px;
+    border-color: 					@foreground;
+}
+
+// Error message
+textbox {
+    text-color: 					@foreground;
+}
